@@ -2,9 +2,9 @@ package com.dimka.javapro.model;
 
 import com.dimka.javapro.model.component.Component;
 import lombok.Data;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.Id;
 import java.util.List;
 
 @Data

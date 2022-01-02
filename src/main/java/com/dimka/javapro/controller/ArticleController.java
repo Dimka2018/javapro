@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RequiredArgsConstructor
+@RequestMapping("/api")
 @RestController
 public class ArticleController {
 
@@ -20,7 +21,7 @@ public class ArticleController {
     }
 
     @PostMapping("/article")
-    public String createArticle() {
+    public Article createArticle() {
         return articleApiService.createArticle();
     }
 

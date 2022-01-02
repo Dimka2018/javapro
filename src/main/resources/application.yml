@@ -2,7 +2,9 @@
 spring:
   data:
     mongodb:
+      database: javapro
       host: localhost
       port: 27017
-      database: javapro
+      username: root
+      password: password
 
