@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -19,10 +18,15 @@ public class ArticleApiService {
     private final ArticleToArticleLinkDtoMapper articleToArticleLinkDtoMapper;
 
     public List<ArticleLinkDto> getArticles() {
-        List<Article> articles = articleService.getAll().stream()
-                .filter(article -> article.getTitle() != null)
-                .collect(Collectors.toList());
-        return articleToArticleLinkDtoMapper.convert(articles);
+        return articleToArticleLinkDtoMapper.convert(articleService.getAll());
+    }
+
+    public Article getArticle(String id) {
+        return articleService.get(id);
+    }
+
+    public void deleteArticle(String id) {
+        articleService.delete(id);
     }
 
     public Article createArticle() {

@@ -20,13 +20,23 @@ public class ArticleController {
         return articleApiService.getArticles();
     }
 
+    @GetMapping("/articles/{id}")
+    public Article getArticle(@PathVariable String id) {
+        return articleApiService.getArticle(id);
+    }
+
+    @DeleteMapping("/articles/{id}")
+    public void deleteArticle(@PathVariable String id) {
+        articleApiService.deleteArticle(id);
+    }
+
     @PostMapping("/article")
     public Article createArticle() {
         return articleApiService.createArticle();
     }
 
     @PutMapping("/article")
-    public Article updateArticle(Article article) {
+    public Article updateArticle(@RequestBody Article article) {
         return articleApiService.updateArticle(article);
     }
 }

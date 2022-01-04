@@ -20,4 +20,13 @@ public class ArticleService {
     public Article save(Article article) {
         return articleRepository.save(article);
     }
+
+    public Article get(String id) {
+        return articleRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Article not found for id " + id));
+    }
+
+    public void delete(String id) {
+        articleRepository.deleteById(id);
+    }
 }
