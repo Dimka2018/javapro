@@ -16,8 +16,8 @@ public class ArticleController {
     private final ArticleApiService articleApiService;
 
     @GetMapping("/articles")
-    public List<ArticleLinkDto> getArticleList() {
-        return articleApiService.getArticles();
+    public List<ArticleLinkDto> getArticleList(@RequestParam(required = false) String text) {
+        return articleApiService.getArticles(text);
     }
 
     @GetMapping("/articles/{id}")
@@ -39,4 +39,5 @@ public class ArticleController {
     public Article updateArticle(@RequestBody Article article) {
         return articleApiService.updateArticle(article);
     }
+
 }

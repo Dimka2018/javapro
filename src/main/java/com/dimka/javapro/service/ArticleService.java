@@ -29,4 +29,8 @@ public class ArticleService {
     public void delete(String id) {
         articleRepository.deleteById(id);
     }
+
+    public List<Article> searchByText(String text) {
+        return articleRepository.findAllByTitleContainsIgnoreCase(text);
+    }
 }
