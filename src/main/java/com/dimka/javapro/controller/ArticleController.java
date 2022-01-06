@@ -1,6 +1,6 @@
 package com.dimka.javapro.controller;
 
-import com.dimka.javapro.dto.ArticleLinkDto;
+import com.dimka.javapro.dto.ArticleLinkResponse;
 import com.dimka.javapro.model.Article;
 import com.dimka.javapro.service.api.ArticleApiService;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +16,7 @@ public class ArticleController {
     private final ArticleApiService articleApiService;
 
     @GetMapping("/articles")
-    public List<ArticleLinkDto> getArticleList(@RequestParam(required = false) String text) {
+    public List<ArticleLinkResponse> getArticleList(@RequestParam(required = false) String text) {
         return articleApiService.getArticles(text);
     }
 

@@ -1,4 +1,3 @@
-#mongodb
 spring:
   data:
     mongodb:
@@ -7,4 +6,6 @@ spring:
       port: 27017
       username: root
       password: password
-
+  redis:
+    host: localhost
+    port: 6379

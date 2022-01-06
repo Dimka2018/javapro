@@ -1,7 +1,7 @@
 package com.dimka.javapro.service.api;
 
-import com.dimka.javapro.dto.ArticleLinkDto;
-import com.dimka.javapro.mapper.ArticleToArticleLinkDtoMapper;
+import com.dimka.javapro.dto.ArticleLinkResponse;
+import com.dimka.javapro.mapper.ArticleToArticleLinkResponseMapper;
 import com.dimka.javapro.model.Article;
 import com.dimka.javapro.service.ArticleService;
 import lombok.RequiredArgsConstructor;
@@ -17,9 +17,9 @@ public class ArticleApiService {
 
     private final ArticleService articleService;
 
-    private final ArticleToArticleLinkDtoMapper articleToArticleLinkDtoMapper;
+    private final ArticleToArticleLinkResponseMapper articleToArticleLinkDtoMapper;
 
-    public List<ArticleLinkDto> getArticles(@Nullable String text) {
+    public List<ArticleLinkResponse> getArticles(@Nullable String text) {
         List<Article> articles;
         if (StringUtils.isNoneBlank(text)) {
             articles = articleService.searchByText(text);
