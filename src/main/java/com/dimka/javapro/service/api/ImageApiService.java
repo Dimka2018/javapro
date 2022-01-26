@@ -16,7 +16,7 @@ public class ImageApiService {
     private final ImageToImageResponseMapper imageToImageResponseMapper;
 
     public ImageResponse saveImage(ImageRequest imageRequest) {
-        return imageToImageResponseMapper.convert(imageService.saveImage(imageRequest.getSrc()));
+        return imageToImageResponseMapper.convert(imageService.saveImage(imageRequest.getSrc(), imageRequest.getArticleId()));
     }
 
     public byte[] getImage(String id) {

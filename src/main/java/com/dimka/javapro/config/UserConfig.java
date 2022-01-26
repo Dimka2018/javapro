@@ -3,6 +3,7 @@ package com.dimka.javapro.config;
 import com.dimka.javapro.model.Permission;
 import com.dimka.javapro.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
@@ -15,8 +16,16 @@ public class UserConfig {
 
     private final UserService userService;
 
-    //@PostConstruct
+    @Value("${admin.username}")
+    private String adminUsername;
+
+    @Value("${admin.password}")
+    private String adminPassword;
+
+    @PostConstruct
     public void createUser() {
-        userService.createUser("admin", "admin", Arrays.stream(Permission.values()).collect(Collectors.toSet()));
+        if (userService.get(adminUsername, adminPassword).isEmpty()) {
+            userService.createUser(adminUsername, adminPassword, Arrays.stream(Permission.values()).collect(Collectors.toSet()));
+        }
     }
 }

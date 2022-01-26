@@ -4,6 +4,7 @@ import com.dimka.javapro.dto.ArticleLinkResponse;
 import com.dimka.javapro.mapper.ArticleToArticleLinkResponseMapper;
 import com.dimka.javapro.model.Article;
 import com.dimka.javapro.service.ArticleService;
+import com.dimka.javapro.service.ImageService;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.lang.Nullable;
@@ -16,6 +17,7 @@ import java.util.List;
 public class ArticleApiService {
 
     private final ArticleService articleService;
+    private final ImageService imageService;
 
     private final ArticleToArticleLinkResponseMapper articleToArticleLinkDtoMapper;
 
@@ -42,6 +44,7 @@ public class ArticleApiService {
     }
 
     public Article updateArticle(Article article) {
+        imageService.deleteUnused(article);
         return articleService.save(article);
     }
 }

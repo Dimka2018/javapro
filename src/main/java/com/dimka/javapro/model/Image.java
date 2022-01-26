@@ -10,6 +10,7 @@ import org.springframework.data.redis.core.RedisHash;
 public class Image {
 
     private String id;
+    private String articleId;
     private byte[] content;
 
 }
