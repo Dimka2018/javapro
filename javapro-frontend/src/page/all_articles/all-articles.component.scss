@@ -1,0 +1,86 @@
+.all-articles-page {
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  padding-top: 3vw;
+}
+
+.article {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 25vw;
+  height: 2vw;
+  border: black solid 4px;
+  border-radius: 4px;
+  font-weight: bold;
+  color: black;
+}
+
+.record {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 29vw;
+}
+
+.article-container {
+  width: 100vw;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 2vw;
+}
+
+.article-link {
+  font-weight: bold;
+  color: black;
+}
+
+.delete-button, .change-button {
+  width: 2vw;
+  height: 2vw;
+}
+
+.button-container {
+  width: 8vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.black-square {
+  background: black;
+  border: black solid 4px;
+  border-radius: 4px;
+}
+
+.square-box {
+  width: 2vw;
+  height: 2vw;
+  border: black solid 4px;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.delete-button {
+  background: url("../../assets/images/delete.svg") no-repeat center;
+}
+
+.change-button {
+  background: url("../../assets/images/edit.svg") no-repeat center;
+}
+
+.article-link:hover {
+  cursor: pointer;
+}
+
+.delete-button:hover, .change-button:hover {
+  cursor: pointer;
+}

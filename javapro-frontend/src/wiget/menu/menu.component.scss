@@ -1,0 +1,65 @@
+.menu {
+  width: 4vw;
+  height: 4vw;
+}
+
+.black-menu {
+  background: url("../../assets/images/menu-black.svg") transparent no-repeat center;
+}
+
+.white-menu {
+  background: url("../../assets/images/menu-white.svg") transparent no-repeat center;
+}
+
+.menu-bar {
+  width: 40vw;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.black {
+  background-color: black;
+}
+
+.menu:hover {
+  cursor: pointer;
+}
+
+.menu-window {
+  position: fixed;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: black;
+  width: 40vw;
+  height: 20vw;
+  padding-top: 2vw;
+}
+
+.menu-component {
+  background: black;
+  width: 100%;
+  height: 25%;
+  color: white;
+  font-size: 2vw;
+  text-align: center;
+  text-decoration: none;
+}
+
+.menu-component:hover {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.login {
+  background: url("../../assets/images/signin.svg") transparent no-repeat center;
+  background-size: 3vw;
+}
+
+.logout {
+  background: url("../../assets/images/signout.svg") transparent no-repeat center;
+  background-size: 3vw;
+}

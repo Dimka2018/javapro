@@ -1,0 +1,21 @@
+<div class="feedback-container" *ngIf="!isSend">
+  <div class="feedback-channel">
+    <input class="channel"
+           [(ngModel)]="contact"
+           placeholder="Enter here your email or phone or telegram">
+  </div>
+  <textarea class="feedback-message" [(ngModel)]="question"
+            placeholder="Describe your question"></textarea>
+  <button class="feedback-send-button" (click)="sendQuestion()">Send</button>
+</div>
+<div class="post-send-panel" *ngIf="isSend">
+  <div class="post-send-message">
+    <img class="post-send-image" src="assets/images/ok.svg">
+    <span>Thanks for your question!</span>
+  </div>
+  <div class="post-send-button-container">
+    <button (click)="openAllArticles()">Go to articles</button>
+    <button (click)="refreshQuestion()">New question</button>
+  </div>
+</div>
+

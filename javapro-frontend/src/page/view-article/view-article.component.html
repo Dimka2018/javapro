@@ -1,0 +1,10 @@
+<div class="article-header">
+  <input class="title" disabled [(ngModel)]="article.title">
+</div>
+<div class="NgxEditor__Wrapper">
+  <ngx-editor
+    [editor]="editor"
+    [(ngModel)]="html"
+    [disabled]="true"
+  ></ngx-editor>
+</div>

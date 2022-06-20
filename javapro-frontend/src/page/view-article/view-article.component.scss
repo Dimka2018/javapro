@@ -1,0 +1,19 @@
+.article-header {
+  width: 100vw;
+  height: 4vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.title {
+  width: 30vw;
+  height: 2vw;
+  border-radius: 0.5vw;
+  border: 2px solid black;
+}
+
+.NgxEditor__Wrapper {
+  border: none;
+  outline: none;
+}

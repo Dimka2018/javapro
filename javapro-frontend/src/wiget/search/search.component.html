@@ -1,0 +1,22 @@
+<div class="result-container sticky-left" *ngIf="expanded">
+  <div class="flex-row">
+    <input class="search-window" #search_window (input)="find(search_window.value)"/>
+  </div>
+  <div class="search-result">
+    <div class="record" *ngFor="let article of articles; let i = index" [attr.data-index]="i">
+      <div class="square-box">{{i + 1}}</div>
+      <div class="article" (mouseenter)="setArticleId(article.id || '')">
+        {{article.title}}
+      </div>
+      <context-view class="position-center"
+                    [articleId]="article.id"
+                    (mouseleave)="setArticleId('')"
+                    *ngIf="articleId === article.id">
+      </context-view>
+    </div>
+  </div>
+</div>
+<div class="search-button sticky-left"
+     [ngClass]="{'arrow-right' : !expanded, 'arrow-left' : expanded}"
+     (mouseenter)="switchArrow()" (click)="switchArrow()">
+</div>

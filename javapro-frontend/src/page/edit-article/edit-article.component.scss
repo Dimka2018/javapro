@@ -1,0 +1,42 @@
+.article-header {
+  width: 100vw;
+  height: 4vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sticky-left {
+  position: fixed;
+  position: -webkit-sticky;
+  top: 0;
+  left: 0;
+}
+
+.title {
+  width: 30vw;
+  height: 2vw;
+  border-radius: 0.5vw;
+  border: 2px solid black;
+}
+
+.edit-panel {
+  display: flex;
+  align-items: center;
+  padding-left: 10vw;
+}
+
+.edit-button {
+  width: 2vw;
+  height: 2vw;
+  border-radius: 0.4vw;
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+
+.edit-button:hover {
+  cursor: pointer;
+}
