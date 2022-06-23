@@ -2,8 +2,6 @@ package com.dimka.javapro.controller;
 
 import com.dimka.javapro.dto.ImageRequest;
 import com.dimka.javapro.dto.ImageResponse;
-import com.dimka.javapro.model.Permission;
-import com.dimka.javapro.model.Permissions;
 import com.dimka.javapro.service.api.ImageApiService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -15,7 +13,6 @@ public class ImageController {
 
     private final ImageApiService imageApiService;
 
-    @Permissions(Permission.IMAGE_CREATE)
     @PostMapping("/image")
     public ImageResponse saveImage(@RequestBody ImageRequest request) {
         return imageApiService.saveImage(request);

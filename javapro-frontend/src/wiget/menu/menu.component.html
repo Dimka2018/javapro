@@ -6,8 +6,9 @@
 </div>
 <div class="menu-window" *ngIf="expanded" (mouseleave)="switchExpand()">
   <a class="menu-component" routerLink="all-articles">All articles</a>
-  <a class="menu-component" (click)="createArticle()" *ngIf="hasPermission('ARTICLE_CREATE')">New article</a>
+  <a class="menu-component" (click)="createArticle()" *ngIf="hasPermission('ADMIN')">New article</a>
   <a class="menu-component" routerLink="ask-question">Ask question</a>
-  <a class="menu-component login" routerLink="login" *ngIf="!isAuthorized()"></a>
-  <a class="menu-component logout" (click)="logout()" *ngIf="isAuthorized()"></a>
+  <a class="menu-component" routerLink="admin-console" *ngIf="hasPermission('ADMIN')">Admin console</a>
+  <a class="menu-component login" routerLink="login" *ngIf="!isAuthenticated()"></a>
+  <a class="menu-component logout" (click)="logout()" *ngIf="isAuthenticated()"></a>
 </div>

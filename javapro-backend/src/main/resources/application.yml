@@ -11,4 +11,4 @@ spring:
     port: 6379
 admin:
   username: admin
-  password: 8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918
+  password: "{bcrypt}$2a$10$nLje5D9UzxJdd.OdpGgozOtvefbOt6o8n4YX.l.TerwMZ71HfHJpW"

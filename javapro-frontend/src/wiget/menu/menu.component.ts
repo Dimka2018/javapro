@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {DocumentService} from "../../service/document.service";
 import {Router} from "@angular/router";
 import {UserService} from "../../service/user.service";
@@ -10,7 +10,7 @@ import {UserService} from "../../service/user.service";
 })
 export class MenuComponent {
 
-  public expanded: Boolean = false;
+  expanded: Boolean = false;
 
   constructor(private docService: DocumentService, private userService: UserService, private router: Router) {
   }
@@ -24,12 +24,13 @@ export class MenuComponent {
     this.expanded = !this.expanded
   }
 
-  isAuthorized() {
-    return this.userService.user
+  isAuthenticated() {
+    return this.userService.authenticated;
   }
 
   logout() {
     this.userService.logout()
+      .subscribe(() => this.userService.refreshAuthentication())
   }
 
   hasPermission(permission: string) {

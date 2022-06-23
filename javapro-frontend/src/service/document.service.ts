@@ -32,4 +32,15 @@ export class DocumentService {
     return this.http.get<Article[]>(`/api/articles?text=${text}`)
   }
 
+  public downloadHistory() {
+    // @ts-ignore
+    window.location = `/api/articles/history/zip`;
+  }
+
+  public applyHistory(file: any): Observable<void> {
+    let formData = new FormData();
+    formData.append("file", file)
+    return this.http.post<void>("/api/articles/history/zip", formData);
+  }
+
 }

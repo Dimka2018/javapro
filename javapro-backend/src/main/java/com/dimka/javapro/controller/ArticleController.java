@@ -2,13 +2,13 @@ package com.dimka.javapro.controller;
 
 import com.dimka.javapro.dto.ArticleLinkResponse;
 import com.dimka.javapro.model.Article;
-import com.dimka.javapro.model.Permission;
-import com.dimka.javapro.model.Permissions;
 import com.dimka.javapro.service.api.ArticleApiService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 @RequiredArgsConstructor
 @RequestMapping("/api")
@@ -27,22 +27,29 @@ public class ArticleController {
         return articleApiService.getArticle(id);
     }
 
-    @Permissions(Permission.ARTICLE_DELETE)
     @DeleteMapping("/articles/{id}")
     public void deleteArticle(@PathVariable String id) {
         articleApiService.deleteArticle(id);
     }
 
-    @Permissions(Permission.ARTICLE_CREATE)
     @PostMapping("/article")
     public Article createArticle() {
         return articleApiService.createArticle();
     }
 
-    @Permissions(Permission.ARTICLE_UPDATE)
     @PutMapping("/article")
-    public Article updateArticle(@RequestBody Article article) {
+    public CompletableFuture<Article> updateArticle(@RequestBody Article article) {
         return articleApiService.updateArticle(article);
+    }
+
+    @GetMapping(value = "/articles/history/zip", produces="application/zip")
+    public byte[] downloadArticles() {
+        return articleApiService.getZipHistory();
+    }
+
+    @PostMapping("/articles/history/zip")
+    public void applyHistory(MultipartFile file) {
+        articleApiService.applyHistory(file);
     }
 
 }

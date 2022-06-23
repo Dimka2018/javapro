@@ -6,25 +6,32 @@ import {User} from "../model/user";
 @Injectable({providedIn: 'root'})
 export class UserService {
 
-  public user?: User;
+  authenticated = false;
 
   constructor(private http: HttpClient) {
+    this.refreshAuthentication()
   }
 
-  public login(user: User): Observable<User> {
-    return this.http.post<User>('/api/users/login', user)
+  public login(user: User): Observable<void> {
+    let formData = new FormData();
+    // @ts-ignore
+    formData.append("username", user.username)
+    // @ts-ignore
+    formData.append("password", user.password)
+    return this.http.post<void>("/api/login", formData);
   }
 
   public logout(): Observable<void> {
-    return this.http.get<void>('/api/users/logout')
-      .pipe(o => {
-        this.user = undefined
-        return o
-      })
+    return this.http.get<void>('/api/logout');
+  }
+
+  public refreshAuthentication() {
+    this.http.get<boolean>('/api/user/authentication')
+      .subscribe(result => this.authenticated = result);
   }
 
   public hasPermission(permission: string): boolean {
-    return !!this.user && !!this.user.permissions && this.user.permissions.includes(permission);
+    return true;
   }
 
 }

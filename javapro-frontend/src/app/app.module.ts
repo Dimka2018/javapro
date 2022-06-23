@@ -14,6 +14,7 @@ import {AllArticlesComponent} from "../page/all_articles/all-articles.component"
 import {ViewArticleComponent} from "../page/view-article/view-article.component";
 import {ContextViewComponent} from "../wiget/context-view/context-view.component";
 import {LoginComponent} from "../page/login/login.component";
+import {AdminConsole} from "../page/admin-console/admin-console";
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import {LoginComponent} from "../page/login/login.component";
     EditArticleComponent,
     ViewArticleComponent,
     AllArticlesComponent,
+    AdminConsole,
     SearchComponent,
     MenuComponent,
     ContextViewComponent

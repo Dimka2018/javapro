@@ -17,9 +17,8 @@ export class LoginComponent {
 
   login() {
     this.userService.login(this.user)
-      .subscribe(user => {
-        this.user = user;
-        this.userService.user = user
+      .subscribe(() => {
+        this.userService.refreshAuthentication();
         this.router.navigate([`/all-articles`])
       })
   }

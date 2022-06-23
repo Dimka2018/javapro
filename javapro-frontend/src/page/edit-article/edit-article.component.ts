@@ -36,7 +36,7 @@ export class EditArticleComponent implements OnInit, OnDestroy {
     this.prepareContent(doc.content).then(() => {
       let articleToUpdate = this.mapper.docToArticle(doc, this.article.id, this.article.title);
       this.article = articleToUpdate;
-      this.html = this.mapper.articleToDoc(articleToUpdate)
+      //this.html = this.mapper.articleToDoc(articleToUpdate)
       this.docService.saveDoc(articleToUpdate)
         .subscribe();
     });

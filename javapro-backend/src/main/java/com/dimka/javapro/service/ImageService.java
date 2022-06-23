@@ -11,9 +11,9 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 @Slf4j
@@ -32,22 +32,22 @@ public class ImageService {
         return imageRepository.save(image);
     }
 
+    public void save(Image image) {
+        imageRepository.save(image);
+    }
+
     public byte[] get(String id) {
         return imageRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Image not found for id " + id))
                 .getContent();
     }
 
-    @Async
+    public Stream<Image> findAll() {
+        return StreamSupport.stream(imageRepository.findAll().spliterator(), false);
+    }
+
     @SneakyThrows
-    public void deleteUnused(Article article) {
-        String content = objectMapper.writeValueAsString(article.getContent());
-        List<String> ids = StreamSupport.stream(imageRepository.findAll().spliterator(), false)
-                .filter(image -> image.getArticleId().equals(article.getId()))
-                .map(Image::getId)
-                .filter(id -> !content.contains(id))
-                .collect(Collectors.toList());
-        log.info(String.valueOf(ids));
+    public void delete(List<String> ids) {
         imageRepository.deleteAllById(ids);
     }
 

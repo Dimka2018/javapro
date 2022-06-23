@@ -11,19 +11,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 25vw;
+  width: 85%;
   height: 2vw;
   border: black solid 4px;
   border-radius: 4px;
   font-weight: bold;
   color: black;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .record {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 29vw;
+  width: 30vw;
 }
 
 .article-container {

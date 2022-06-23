@@ -13,13 +13,6 @@ import {ArticleMapper} from "../../mapper/article.mapper";
 })
 export class SearchComponent {
 
-  @ViewChild('search_window', {static: false})
-  set content(content: ElementRef) {
-    if(content) {
-      content.nativeElement.focus();
-    }
-  }
-
   public expanded: Boolean = false;
   public articles: Article[] = [];
   public articleId: string = ''
