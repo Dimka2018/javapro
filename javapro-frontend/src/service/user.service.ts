@@ -7,6 +7,7 @@ import {User} from "../model/user";
 export class UserService {
 
   authenticated = false;
+  permissions: string[] = []
 
   constructor(private http: HttpClient) {
     this.refreshAuthentication()
@@ -28,10 +29,12 @@ export class UserService {
   public refreshAuthentication() {
     this.http.get<boolean>('/api/user/authentication')
       .subscribe(result => this.authenticated = result);
+    this.http.get<string[]>('/api/user/permissions')
+      .subscribe(result => this.permissions = result)
   }
 
   public hasPermission(permission: string): boolean {
-    return true;
+    return this.permissions.includes(permission);
   }
 
 }

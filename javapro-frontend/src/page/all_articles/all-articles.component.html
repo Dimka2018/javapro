@@ -6,10 +6,10 @@
         <div class="article article-link" (click)="openArticle(article.id || '')">{{article.title || article.id}}</div>
       </div>
       <div class="button-container">
-        <div class="black-square" *ngIf="hasPermission('ARTICLE_UPDATE')">
+        <div class="black-square" *ngIf="hasPermission('ROLE_ADMIN')">
           <div (click)="changeArticle(article.id || '')" class="change-button"></div>
         </div>
-        <div class="black-square" *ngIf="hasPermission('ARTICLE_DELETE')">
+        <div class="black-square" *ngIf="hasPermission('ROLE_ADMIN')">
           <div (click)="deleteArticle(article.id || '')" class="delete-button"></div>
         </div>
       </div>

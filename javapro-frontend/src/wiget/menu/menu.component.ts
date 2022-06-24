@@ -34,6 +34,6 @@ export class MenuComponent {
   }
 
   hasPermission(permission: string) {
-    return this.userService
+    return this.userService.hasPermission(permission)
   }
 }

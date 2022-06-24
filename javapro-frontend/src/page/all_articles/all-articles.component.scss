@@ -1,10 +1,14 @@
 .all-articles-page {
   width: 100vw;
   height: 100vh;
-  overflow: auto;
   display: flex;
   justify-content: center;
   padding-top: 3vw;
+  overflow: hidden;
+}
+
+.question-window {
+  overflow-x: hidden;
 }
 
 .article {

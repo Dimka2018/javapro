@@ -12,13 +12,13 @@ import java.util.stream.Collectors;
 @Service
 public class UserApiService {
 
-    public boolean hasPermission(String permission) {
-        List<String> authorities = SecurityContextHolder.getContext()
+    public List<String> getPermissions() {
+        return SecurityContextHolder.getContext()
                 .getAuthentication()
-                .getAuthorities().stream()
+                .getAuthorities()
+                .stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
-        return authorities.contains(permission);
     }
 
     public boolean isAuthenticated() {
