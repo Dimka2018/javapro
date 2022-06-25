@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -56,7 +57,15 @@ public class SecurityConfig {
         return http.csrf()
                 .disable()
                 .authorizeRequests()
-                .antMatchers("/api/**")
+                .antMatchers("/api/articles/history/**")
+                .authenticated()
+                .antMatchers(HttpMethod.DELETE.name(), "/api/articles/*")
+                .authenticated()
+                .antMatchers(HttpMethod.POST.name(), "/api/article")
+                .authenticated()
+                .antMatchers(HttpMethod.PUT.name(), "/api/article")
+                .authenticated()
+                .anyRequest()
                 .permitAll()
                 .and()
                 .formLogin()

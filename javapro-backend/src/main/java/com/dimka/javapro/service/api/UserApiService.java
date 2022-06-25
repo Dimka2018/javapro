@@ -13,6 +13,9 @@ import java.util.stream.Collectors;
 public class UserApiService {
 
     public List<String> getPermissions() {
+        if (SecurityContextHolder.getContext().getAuthentication() == null || SecurityContextHolder.getContext().getAuthentication().getAuthorities() == null) {
+            return List.of();
+        }
         return SecurityContextHolder.getContext()
                 .getAuthentication()
                 .getAuthorities()
@@ -22,7 +25,9 @@ public class UserApiService {
     }
 
     public boolean isAuthenticated() {
-        return !SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser");
+        return SecurityContextHolder.getContext().getAuthentication() != null &&
+                SecurityContextHolder.getContext().getAuthentication().getPrincipal() != null &&
+                !SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser");
     }
 
 }
