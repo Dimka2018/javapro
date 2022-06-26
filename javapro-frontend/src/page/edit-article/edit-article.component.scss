@@ -40,3 +40,10 @@
 .edit-button:hover {
   cursor: pointer;
 }
+
+.edit-article-page {
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+}

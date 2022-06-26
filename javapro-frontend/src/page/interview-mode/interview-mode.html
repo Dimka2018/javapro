@@ -1,4 +1,4 @@
-<div class="result-container sticky-left" *ngIf="expanded">
+<div class="all-articles-page">
   <div class="flex-row">
     <input class="search-window" #search_window (input)="find(search_window.value)"/>
   </div>
@@ -15,8 +15,4 @@
       </context-view>
     </div>
   </div>
-</div>
-<div class="search-button sticky-left"
-     [ngClass]="{'arrow-right' : !expanded, 'arrow-left' : expanded}"
-     (mouseenter)="switchArrow()" (click)="switchArrow()">
 </div>

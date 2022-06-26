@@ -6,6 +6,7 @@
 </div>
 <div class="menu-window" *ngIf="expanded" (mouseleave)="switchExpand()">
   <a class="menu-component" routerLink="all-articles">All articles</a>
+  <a class="menu-component" routerLink="interview-mode">Interview mode</a>
   <a class="menu-component" (click)="createArticle()" *ngIf="hasPermission('ROLE_ADMIN')">New article</a>
   <a class="menu-component" routerLink="ask-question">Ask question</a>
   <a class="menu-component" routerLink="admin-console" *ngIf="hasPermission('ROLE_ADMIN')">Admin console</a>

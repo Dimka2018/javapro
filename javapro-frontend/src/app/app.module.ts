@@ -6,7 +6,6 @@ import {AppComponent} from './app.component';
 import {AskQuestionComponent} from "../page/ask-question/ask_question.component";
 import {EditArticleComponent} from "../page/edit-article/edit-article.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {SearchComponent} from "../wiget/search/search.component";
 import {MenuComponent} from "../wiget/menu/menu.component";
 import {NgxEditorModule} from "ngx-editor";
 import {HttpClientModule} from "@angular/common/http";
@@ -15,6 +14,7 @@ import {ViewArticleComponent} from "../page/view-article/view-article.component"
 import {ContextViewComponent} from "../wiget/context-view/context-view.component";
 import {LoginComponent} from "../page/login/login.component";
 import {AdminConsole} from "../page/admin-console/admin-console";
+import {InterviewModeComponent} from "../page/interview-mode/interview-mode";
 
 @NgModule({
   declarations: [
@@ -24,8 +24,8 @@ import {AdminConsole} from "../page/admin-console/admin-console";
     EditArticleComponent,
     ViewArticleComponent,
     AllArticlesComponent,
+    InterviewModeComponent,
     AdminConsole,
-    SearchComponent,
     MenuComponent,
     ContextViewComponent
   ],

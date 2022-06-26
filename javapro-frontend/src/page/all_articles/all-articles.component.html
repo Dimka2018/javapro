@@ -1,6 +1,9 @@
 <div class="all-articles-page">
+  <div class="flex-row">
+    <input class="search-window" #search_window (input)="find(search_window.value)"/>
+  </div>
   <div class="article-list">
-    <div class="article-container" *ngFor="let article of articles; let i = index" [attr.data-index]="i">
+    <div class="article-container" *ngFor="let article of filteredArticles; let i = index" [attr.data-index]="i">
       <div class="record">
         <div class="square-box">{{i + 1}}</div>
         <div class="article article-link" (click)="openArticle(article.id || '')">{{article.title || article.id}}</div>

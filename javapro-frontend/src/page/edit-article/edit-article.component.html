@@ -1,13 +1,15 @@
-<div class="article-header">
-  <input class="title" (input)="onTitleChanged()" [(ngModel)]="article.title">
-</div>
-<div class="NgxEditor__Wrapper">
-  <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
-  <ngx-editor
-    [editor]="editor"
-    [(ngModel)]="html"
-    [disabled]="false"
-    [placeholder]="'Type here...'"
-    (ngModelChange)="onChange(html)"
-  ></ngx-editor>
+<div class="edit-article-page">
+  <div class="article-header">
+    <input class="title" (input)="onTitleChanged()" [(ngModel)]="article.title">
+  </div>
+  <div class="NgxEditor__Wrapper">
+    <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
+    <ngx-editor
+      [editor]="editor"
+      [(ngModel)]="html"
+      [disabled]="false"
+      [placeholder]="'Type here...'"
+      (ngModelChange)="onChange(html)"
+    ></ngx-editor>
+  </div>
 </div>

@@ -10,7 +10,9 @@ import {UserService} from "../../service/user.service";
   styleUrls: ['./all-articles.component.scss']
 })
 export class AllArticlesComponent {
+
   public articles: Article[] = [];
+  filteredArticles: Article[] = [];
 
   constructor(private docService: DocumentService, private userService: UserService, private router: Router) {
   }
@@ -25,7 +27,10 @@ export class AllArticlesComponent {
 
   refreshArticles() {
     return this.docService.getArticleList()
-      .subscribe(articles => this.articles = articles);
+      .subscribe(articles => {
+        this.articles = articles
+        this.filteredArticles = this.articles
+      });
   }
 
   changeArticle(id: string) {
@@ -35,6 +40,14 @@ export class AllArticlesComponent {
   deleteArticle(id: string) {
     this.docService.deleteArticle(id)
       .subscribe(() => this.refreshArticles())
+  }
+
+  find(value: string) {
+    if (value) {
+      this.filteredArticles = this.articles.filter(article => article.title?.toLowerCase().includes(value))
+    } else {
+      this.filteredArticles = this.articles;
+    }
   }
 
   hasPermission(permission: string): boolean {

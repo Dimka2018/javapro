@@ -6,8 +6,22 @@
   overflow: hidden;
 }
 
+.flex-row {
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-window {
+  width: 35vw;
+  height: 2vw;
+  border-radius: 1vw;
+  border: 4px solid black;
+}
+
 .article-list {
-  margin-top: 3vw;
+  margin-top: 2vw;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
@@ -17,7 +31,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 85%;
+  width: 90%;
   height: 2vw;
   border: black solid 4px;
   border-radius: 4px;
@@ -32,7 +46,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 50vw;
+  width: 70vw;
 }
 
 .article-container {
