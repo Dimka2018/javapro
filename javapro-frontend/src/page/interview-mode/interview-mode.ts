@@ -25,4 +25,8 @@ export class InterviewModeComponent {
     this.docService.findArticle(text)
       .subscribe(articles => this.articles = articles)
   }
+
+  focus(event: any) {
+    event.target.focus()
+  }
 }

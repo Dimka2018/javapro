@@ -29,7 +29,7 @@ export class DocumentService {
   }
 
   public findArticle(text: string): Observable<Article[]> {
-    return this.http.get<Article[]>(`/api/articles?text=${text}`)
+    return this.http.get<Article[]>(`/api/articles?text=${encodeURIComponent(text)}`)
   }
 
   public downloadHistory() {

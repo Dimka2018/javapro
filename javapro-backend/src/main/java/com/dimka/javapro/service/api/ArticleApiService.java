@@ -6,6 +6,7 @@ import com.dimka.javapro.model.Article;
 import com.dimka.javapro.model.Image;
 import com.dimka.javapro.service.ArticleService;
 import com.dimka.javapro.service.ImageService;
+import com.dimka.javapro.utils.TextUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -42,7 +43,11 @@ public class ArticleApiService {
     public List<ArticleLinkResponse> getArticles(@Nullable String text) {
         List<Article> articles;
         if (StringUtils.isNoneBlank(text)) {
-            articles = articleService.searchByText(text);
+            articles = TextUtils.transform(text).stream()
+                    .map(articleService::searchByText)
+                    .flatMap(List::stream)
+                    .distinct()
+                    .collect(Collectors.toList());
         } else {
             articles = articleService.getAll();
         }

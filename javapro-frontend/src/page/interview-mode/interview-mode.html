@@ -1,6 +1,6 @@
 <div class="all-articles-page">
   <div class="flex-row">
-    <input class="search-window" #search_window (input)="find(search_window.value)"/>
+    <input class="search-window" #search_window (input)="find(search_window.value)" (mouseenter)="focus($event)"/>
   </div>
   <div class="search-result">
     <div class="record" *ngFor="let article of articles; let i = index" [attr.data-index]="i">

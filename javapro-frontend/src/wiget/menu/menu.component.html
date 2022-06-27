@@ -1,4 +1,4 @@
-<div class="menu-bar" [ngClass]='{black : expanded}'>
+<div [ngClass]="{'black' : expanded, 'menu-bar': expanded}">
   <div class="menu" [ngClass]="{'black-menu' : !expanded, 'white-menu' : expanded}"
        (mouseenter)="switchExpand()"
        (click)="switchExpand()">

@@ -45,8 +45,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 30vw;
-  margin-top: 1vw;
+  width: 70vw;
+  height: 2vw;
+  margin-top: 2vw;
 }
 
 .square-box {
@@ -64,8 +65,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 25vw;
-  height: 2vw;
+  width: 90%;
+  height: 100%;
   border: black solid 4px;
   border-radius: 4px;
   font-weight: bold;
