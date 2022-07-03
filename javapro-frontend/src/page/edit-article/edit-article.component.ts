@@ -1,17 +1,22 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Editor, toDoc, Toolbar} from "ngx-editor";
 import {DocumentService} from "../../service/document.service";
 import {Article} from "../../model/article";
 import {ActivatedRoute} from "@angular/router";
 import {ArticleMapper} from "../../mapper/article.mapper";
 import {ImageService} from "../../service/image.service";
+import {fromEvent} from "rxjs";
+import { filter, debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'edit-article',
   templateUrl: './edit-article.component.html',
   styleUrls: ['./edit-article.component.scss'],
 })
-export class EditArticleComponent implements OnInit, OnDestroy {
+export class EditArticleComponent implements AfterViewInit, OnInit, OnDestroy {
+
+  @ViewChild('article_title', {static: true})
+  articleTitle: any;
 
   article: Article = new Article();
   html: string = '';
@@ -29,6 +34,17 @@ export class EditArticleComponent implements OnInit, OnDestroy {
 
   constructor(private docService: DocumentService, private imageService: ImageService,
               private route: ActivatedRoute, private mapper: ArticleMapper) {
+  }
+
+  ngAfterViewInit(): void {
+    fromEvent(this.articleTitle.nativeElement,'input')
+      .pipe(
+        filter(Boolean),
+        debounceTime(1000),
+        // @ts-ignore
+        distinctUntilChanged(),
+        tap(() => this.onTitleChanged()))
+      .subscribe();
   }
 
   onChange(html: string) {

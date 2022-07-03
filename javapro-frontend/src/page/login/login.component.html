@@ -1,8 +1,8 @@
 <div class="login-container">
-  <div class="login-frame">
+  <form class="login-frame" (ngSubmit)="login()">
     <span class="login-header">Sign in</span>
-    <input class="input-line" placeholder="login" [(ngModel)]="user.username">
-    <input class="input-line" type="password" placeholder="password" [(ngModel)]="user.password">
-    <button class="login-button" (click)="login()">Next</button>
-  </div>
+    <input class="input-line" name="username" placeholder="login" [(ngModel)]="user.username">
+    <input class="input-line" name="password" type="password" placeholder="password" [(ngModel)]="user.password">
+    <input class="login-button" type="submit" value="Next">
+  </form>
 </div>

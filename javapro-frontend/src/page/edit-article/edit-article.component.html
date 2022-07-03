@@ -1,6 +1,6 @@
 <div class="edit-article-page">
   <div class="article-header">
-    <input class="title" (input)="onTitleChanged()" [(ngModel)]="article.title">
+    <input #article_title class="title" [(ngModel)]="article.title">
   </div>
   <div class="NgxEditor__Wrapper">
     <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"> </ngx-editor-menu>
