@@ -1,4 +1,17 @@
 <div class="edit-article-page">
+  <div class="tag-widget">
+    <div class="tag-title" (click)="toggleTagsOpened()">Tags</div>
+    <div *ngIf="tagsOpened" class="expanded-container">
+      <div class="tag-search">
+        <input [(ngModel)]="searchTag"/>
+        <img src="assets/images/save.svg" alt="save" class="save-button" (click)="addTag()"/>
+      </div>
+      <div *ngFor="let tag of article.tags" class="tag-container">
+        <div class="tag-name">{{tag}}</div>
+        <img class="delete-tag-button" src="assets/images/close.svg" alt="del" (click)="deleteTag(tag)"/>
+      </div>
+    </div>
+  </div>
   <div class="article-header">
     <input #article_title class="title" [(ngModel)]="article.title">
   </div>

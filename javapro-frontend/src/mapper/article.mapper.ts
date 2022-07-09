@@ -12,11 +12,12 @@ export class ArticleMapper {
     return doc;
   }
 
-  docToArticle(doc: any, id?: string, title?: string): Article {
+  docToArticle(doc: any, tags: string[], id?: string, title?: string): Article {
     let article = new Article();
     article.id = id;
     article.title = title;
     article.content = doc.content
+    article.tags = tags;
     return article;
   }
 

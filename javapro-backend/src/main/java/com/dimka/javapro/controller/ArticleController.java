@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 @RequiredArgsConstructor
 @RequestMapping("/api")
@@ -38,7 +37,7 @@ public class ArticleController {
     }
 
     @PutMapping("/article")
-    public CompletableFuture<Article> updateArticle(@RequestBody Article article) {
+    public Article updateArticle(@RequestBody Article article) {
         return articleApiService.updateArticle(article);
     }
 

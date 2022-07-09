@@ -15,9 +15,7 @@ export class UserService {
 
   public login(user: User): Observable<void> {
     let formData = new FormData();
-    // @ts-ignore
     formData.append("username", user.username)
-    // @ts-ignore
     formData.append("password", user.password)
     return this.http.post<void>("/api/login", formData);
   }

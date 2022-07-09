@@ -14,7 +14,7 @@ export class InterviewModeComponent {
   public articles: Article[] = [];
   public articleId: string = ''
 
-  constructor(private docService: DocumentService, private userService: UserService, private router: Router) {
+  constructor(private docService: DocumentService) {
   }
 
   setArticleId(id: string) {

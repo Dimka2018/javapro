@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {Editor, toDoc, Toolbar} from "ngx-editor";
 import {DocumentService} from "../../service/document.service";
 import {Article} from "../../model/article";
@@ -6,7 +6,7 @@ import {ActivatedRoute} from "@angular/router";
 import {ArticleMapper} from "../../mapper/article.mapper";
 import {ImageService} from "../../service/image.service";
 import {fromEvent} from "rxjs";
-import { filter, debounceTime, distinctUntilChanged, tap } from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged, filter, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'edit-article',
@@ -18,8 +18,10 @@ export class EditArticleComponent implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild('article_title', {static: true})
   articleTitle: any;
 
+  searchTag = '';
+  tagsOpened = false;
   article: Article = new Article();
-  html: string = '';
+  html = '';
   editor!: Editor;
   toolbar: Toolbar = [
     ["bold", "italic"],
@@ -41,7 +43,6 @@ export class EditArticleComponent implements AfterViewInit, OnInit, OnDestroy {
       .pipe(
         filter(Boolean),
         debounceTime(1000),
-        // @ts-ignore
         distinctUntilChanged(),
         tap(() => this.onTitleChanged()))
       .subscribe();
@@ -50,9 +51,8 @@ export class EditArticleComponent implements AfterViewInit, OnInit, OnDestroy {
   onChange(html: string) {
     let doc = toDoc(html);
     this.prepareContent(doc.content).then(() => {
-      let articleToUpdate = this.mapper.docToArticle(doc, this.article.id, this.article.title);
+      let articleToUpdate = this.mapper.docToArticle(doc, this.article.tags, this.article.id, this.article.title);
       this.article = articleToUpdate;
-      //this.html = this.mapper.articleToDoc(articleToUpdate)
       this.docService.saveDoc(articleToUpdate)
         .subscribe();
     });
@@ -90,6 +90,22 @@ export class EditArticleComponent implements AfterViewInit, OnInit, OnDestroy {
         await this.prepareElement(contentElement);
       }
     }
+  }
+
+  toggleTagsOpened() {
+    this.tagsOpened = !this.tagsOpened;
+  }
+
+  addTag() {
+    this.article.tags.push(this.searchTag);
+    this.docService.saveDoc(this.article)
+      .subscribe(() => this.searchTag = '')
+  }
+
+  deleteTag(tagToDelete: string) {
+    this.article.tags = this.article.tags.filter(tag => tag !== tagToDelete);
+    this.docService.saveDoc(this.article)
+      .subscribe();
   }
 
   ngOnDestroy(): void {

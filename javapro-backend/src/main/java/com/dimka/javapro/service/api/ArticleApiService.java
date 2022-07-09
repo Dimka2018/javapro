@@ -13,7 +13,6 @@ import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.lang.Nullable;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -23,7 +22,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
@@ -40,10 +38,10 @@ public class ArticleApiService {
 
     private final ArticleToArticleLinkResponseMapper articleToArticleLinkDtoMapper;
 
-    public List<ArticleLinkResponse> getArticles(@Nullable String text) {
+    public List<ArticleLinkResponse> getArticles(@Nullable String title) {
         List<Article> articles;
-        if (StringUtils.isNoneBlank(text)) {
-            articles = TextUtils.transform(text).stream()
+        if (StringUtils.isNoneBlank(title)) {
+            articles = TextUtils.transform(title).stream()
                     .map(articleService::searchByText)
                     .flatMap(List::stream)
                     .distinct()
@@ -66,18 +64,8 @@ public class ArticleApiService {
         return articleService.save(new Article());
     }
 
-    @Async
-    public CompletableFuture<Article> updateArticle(Article article) {
-        List<String> ids = articleService.getAll()
-                .stream()
-                .map(Article::getId)
-                .collect(Collectors.toList());
-        List<String> imageIds = imageService.findAll()
-                .filter(image -> !ids.contains(image.getArticleId()))
-                .map(Image::getId)
-                .collect(Collectors.toList());
-        imageService.delete(imageIds);
-        return CompletableFuture.completedFuture(articleService.save(article));
+    public Article updateArticle(Article article) {
+        return articleService.save(article);
     }
 
     @SneakyThrows
