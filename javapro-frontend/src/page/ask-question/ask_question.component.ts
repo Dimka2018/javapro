@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {Question} from "../../model/question";
 import {Router} from "@angular/router";
 import {QuestionService} from "../../service/question.service";
+import {Notify} from "notiflix";
 
 @Component({
   selector: 'ask-question',
@@ -17,22 +18,16 @@ export class AskQuestionComponent {
   constructor(private questionService: QuestionService, private router: Router) {
   }
 
-  setIsSend(isSend: Boolean) {
-    this.isSend = isSend;
-  }
-
   sendQuestion() {
-    this.isSend = true
-    let question = new Question()
-    question.contact = this.contact
-    question.text = this.question
-    this.questionService.sendQuestion(question)
-      .subscribe(() => this.setIsSend(true))
-  }
-
-  refreshQuestion() {
-    this.question = ''
-    this.isSend = false
+    if (this.contact.match(/^\S+@\S+\.\S+$/)) {
+      let question = new Question()
+      question.contact = this.contact
+      question.text = this.question
+      this.questionService.sendQuestion(question)
+        .subscribe(() => this.isSend = true)
+    } else {
+      Notify.failure("Invalid email")
+    }
   }
 
   openAllArticles() {

@@ -1,6 +1,6 @@
 .feedback-container {
   width: 100vw;
-  height: 40vh;
+  height: 30vw;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -78,7 +78,7 @@
   align-items: center;
 
   button {
-    width: 10vw;
+    width: 100%;
     color: black;
     font-weight: bold;
     border: black solid 4px;

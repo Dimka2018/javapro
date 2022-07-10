@@ -2,7 +2,7 @@
   <div class="feedback-channel">
     <input class="channel"
            [(ngModel)]="contact"
-           placeholder="Enter here your email or phone or telegram">
+           placeholder="Enter here your email">
   </div>
   <textarea class="feedback-message" [(ngModel)]="question"
             placeholder="Describe your question"></textarea>
@@ -10,12 +10,11 @@
 </div>
 <div class="post-send-panel" *ngIf="isSend">
   <div class="post-send-message">
-    <img class="post-send-image" src="assets/images/ok.svg">
+    <img class="post-send-image" src="assets/images/ok.svg" alt="Ok">
     <span>Thanks for your question!</span>
   </div>
   <div class="post-send-button-container">
     <button (click)="openAllArticles()">Go to articles</button>
-    <button (click)="refreshQuestion()">New question</button>
   </div>
 </div>
 

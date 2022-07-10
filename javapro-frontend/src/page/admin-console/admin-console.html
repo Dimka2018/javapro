@@ -6,4 +6,25 @@
       <label for="history-apply">Apply</label>
     </div>
   </div>
+  <div class="question-widget">
+    <div class="question-header" (click)="toggleQuestionsOpened()">Questions</div>
+    <table class="question-table" *ngIf="questionsOpened">
+      <thead>
+      <th>Id</th>
+      <th>Contact</th>
+      <th>Ip</th>
+      <th>Text</th>
+      <th></th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let question of questions">
+        <td>{{question.id}}</td>
+        <td>{{question.contact}}</td>
+        <td>{{question.ip}}</td>
+        <td>{{question.text}}</td>
+        <td class="delete-question-button" (click)="deleteQuestion(question.id)">Delete</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

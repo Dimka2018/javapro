@@ -12,6 +12,6 @@ public class Question {
     private String id;
     private String contact;
     private String text;
-    private QuestionStatus status = QuestionStatus.NEW;
+    private String ip;
 
 }

@@ -13,4 +13,12 @@ export class QuestionService {
     return this.http.post<void>('/api/question', question)
   }
 
+  public getQuestions(): Observable<Question[]> {
+    return this.http.get<Question[]>('/api/questions');
+  }
+
+  public deleteQuestion(id: string): Observable<void> {
+    return this.http.delete<void>(`/api/questions/${id}`)
+  }
+
 }

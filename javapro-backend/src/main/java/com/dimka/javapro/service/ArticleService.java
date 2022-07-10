@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -31,6 +32,11 @@ public class ArticleService {
     }
 
     public List<Article> searchByText(String text) {
-        return articleRepository.findAllByTitleContainsIgnoreCase(text);
+        List<Article> titleResult = articleRepository.findAllByTagsContainsIgnoreCase(text);
+        List<Article> tagsResult = articleRepository.findAllByTagsContainsIgnoreCase(text);
+        return List.of(titleResult, tagsResult).stream()
+                .flatMap(List::stream)
+                .distinct()
+                .collect(Collectors.toList());
     }
 }

@@ -8,4 +8,6 @@ import java.util.List;
 public interface ArticleRepository extends MongoRepository<Article, String> {
 
     List<Article> findAllByTitleContainsIgnoreCase(String title);
+
+    List<Article> findAllByTagsContainsIgnoreCase(String text);
 }

@@ -38,10 +38,10 @@ public class ArticleApiService {
 
     private final ArticleToArticleLinkResponseMapper articleToArticleLinkDtoMapper;
 
-    public List<ArticleLinkResponse> getArticles(@Nullable String title) {
+    public List<ArticleLinkResponse> getArticles(@Nullable String text) {
         List<Article> articles;
-        if (StringUtils.isNoneBlank(title)) {
-            articles = TextUtils.transform(title).stream()
+        if (StringUtils.isNoneBlank(text)) {
+            articles = TextUtils.transform(text).stream()
                     .map(articleService::searchByText)
                     .flatMap(List::stream)
                     .distinct()
