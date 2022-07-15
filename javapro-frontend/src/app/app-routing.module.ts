@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {AllArticlesComponent} from "../page/all_articles/all-articles.component";
+import {AllArticlesComponent} from "../page/all-articles/all-articles.component";
 import {AskQuestionComponent} from "../page/ask-question/ask_question.component";
 import {EditArticleComponent} from "../page/edit-article/edit-article.component";
 import {ViewArticleComponent} from "../page/view-article/view-article.component";

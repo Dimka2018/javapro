@@ -9,7 +9,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MenuComponent} from "../wiget/menu/menu.component";
 import {NgxEditorModule} from "ngx-editor";
 import {HttpClientModule} from "@angular/common/http";
-import {AllArticlesComponent} from "../page/all_articles/all-articles.component";
+import {AllArticlesComponent} from "../page/all-articles/all-articles.component";
 import {ViewArticleComponent} from "../page/view-article/view-article.component";
 import {ContextViewComponent} from "../wiget/context-view/context-view.component";
 import {LoginComponent} from "../page/login/login.component";
