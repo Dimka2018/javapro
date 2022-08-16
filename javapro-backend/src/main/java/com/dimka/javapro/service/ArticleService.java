@@ -32,7 +32,7 @@ public class ArticleService {
     }
 
     public List<Article> searchByText(String text) {
-        List<Article> titleResult = articleRepository.findAllByTagsContainsIgnoreCase(text);
+        List<Article> titleResult = articleRepository.findAllByTitleContainsIgnoreCase(text);
         List<Article> tagsResult = articleRepository.findAllByTagsContainsIgnoreCase(text);
         return List.of(titleResult, tagsResult).stream()
                 .flatMap(List::stream)

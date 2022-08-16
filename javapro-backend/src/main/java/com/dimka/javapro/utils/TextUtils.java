@@ -45,48 +45,67 @@ public class TextUtils {
     );
 
     private static final Map<String, String> rusTransformMap = Map.ofEntries(
-            new AbstractMap.SimpleEntry<>("й", ""),
-            new AbstractMap.SimpleEntry<>("ц", ""),
-            new AbstractMap.SimpleEntry<>("у", ""),
-            new AbstractMap.SimpleEntry<>("к", ""),
-            new AbstractMap.SimpleEntry<>("е", ""),
-            new AbstractMap.SimpleEntry<>("н", ""),
-            new AbstractMap.SimpleEntry<>("г", ""),
-            new AbstractMap.SimpleEntry<>("ш", ""),
-            new AbstractMap.SimpleEntry<>("щ", ""),
-            new AbstractMap.SimpleEntry<>("з", ""),
-            new AbstractMap.SimpleEntry<>("х", ""),
-            new AbstractMap.SimpleEntry<>("ъ", ""),
-            new AbstractMap.SimpleEntry<>("ф", ""),
-            new AbstractMap.SimpleEntry<>("ы", ""),
-            new AbstractMap.SimpleEntry<>("в", ""),
-            new AbstractMap.SimpleEntry<>("а", ""),
-            new AbstractMap.SimpleEntry<>("п", ""),
-            new AbstractMap.SimpleEntry<>("р", ""),
-            new AbstractMap.SimpleEntry<>("о", ""),
-            new AbstractMap.SimpleEntry<>("л", ""),
-            new AbstractMap.SimpleEntry<>("д", ""),
-            new AbstractMap.SimpleEntry<>("ж", ""),
-            new AbstractMap.SimpleEntry<>("э", ""),
-            new AbstractMap.SimpleEntry<>("я", ""),
-            new AbstractMap.SimpleEntry<>("ч", ""),
-            new AbstractMap.SimpleEntry<>("с", ""),
-            new AbstractMap.SimpleEntry<>("м", ""),
-            new AbstractMap.SimpleEntry<>("и", ""),
-            new AbstractMap.SimpleEntry<>("т", ""),
-            new AbstractMap.SimpleEntry<>("ь", ""),
-            new AbstractMap.SimpleEntry<>("б", ""),
-            new AbstractMap.SimpleEntry<>("ю", ""),
-            new AbstractMap.SimpleEntry<>(".", "")
+            new AbstractMap.SimpleEntry<>("й", "q"),
+            new AbstractMap.SimpleEntry<>("ц", "w"),
+            new AbstractMap.SimpleEntry<>("у", "e"),
+            new AbstractMap.SimpleEntry<>("к", "r"),
+            new AbstractMap.SimpleEntry<>("е", "t"),
+            new AbstractMap.SimpleEntry<>("н", "y"),
+            new AbstractMap.SimpleEntry<>("г", "u"),
+            new AbstractMap.SimpleEntry<>("ш", "i"),
+            new AbstractMap.SimpleEntry<>("щ", "o"),
+            new AbstractMap.SimpleEntry<>("з", "p"),
+            new AbstractMap.SimpleEntry<>("х", "["),
+            new AbstractMap.SimpleEntry<>("ъ", "]"),
+            new AbstractMap.SimpleEntry<>("ф", "a"),
+            new AbstractMap.SimpleEntry<>("ы", "s"),
+            new AbstractMap.SimpleEntry<>("в", "d"),
+            new AbstractMap.SimpleEntry<>("а", "f"),
+            new AbstractMap.SimpleEntry<>("п", "g"),
+            new AbstractMap.SimpleEntry<>("р", "h"),
+            new AbstractMap.SimpleEntry<>("о", "j"),
+            new AbstractMap.SimpleEntry<>("л", "k"),
+            new AbstractMap.SimpleEntry<>("д", "l"),
+            new AbstractMap.SimpleEntry<>("ж", ";"),
+            new AbstractMap.SimpleEntry<>("э", "'"),
+            new AbstractMap.SimpleEntry<>("я", "z"),
+            new AbstractMap.SimpleEntry<>("ч", "x"),
+            new AbstractMap.SimpleEntry<>("с", "c"),
+            new AbstractMap.SimpleEntry<>("м", "v"),
+            new AbstractMap.SimpleEntry<>("и", "b"),
+            new AbstractMap.SimpleEntry<>("т", "n"),
+            new AbstractMap.SimpleEntry<>("ь", "m"),
+            new AbstractMap.SimpleEntry<>("б", ","),
+            new AbstractMap.SimpleEntry<>("ю", "."),
+            new AbstractMap.SimpleEntry<>(".", "/")
     );
 
     public static List<String> transform(String text) {
-        return List.of(transform(text, rusTransformMap), transform(text, engTransformMap));
+        List<List<String>> list = Arrays.stream(text.split(" "))
+                .map(word -> List.of(transform(word, rusTransformMap), transform(word, engTransformMap)))
+                .collect(Collectors.toList());
+        List<String> result = new ArrayList<>();
+        for (List<String> part : list) {
+            result = combine(result, part);
+        }
+        return result;
     }
 
     private static String transform(String text, Map<String, String> transformMap) {
         return Arrays.stream(text.split(""))
                 .map(literal -> transformMap.getOrDefault(literal, literal))
                 .collect(Collectors.joining());
+    }
+
+    private static List<String> combine(List<String> firstPart, List<String> secondPart) {
+        if (firstPart.isEmpty())
+            return secondPart;
+        List<String> result = new ArrayList<>();
+        for (String firstElement : firstPart) {
+            for (String secondElement : secondPart) {
+                result.add(firstElement + " " + secondElement);
+            }
+        }
+        return result;
     }
 }
