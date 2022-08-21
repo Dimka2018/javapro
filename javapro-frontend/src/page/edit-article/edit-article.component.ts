@@ -97,6 +97,9 @@ export class EditArticleComponent implements AfterViewInit, OnInit, OnDestroy {
   }
 
   addTag() {
+    if (!this.article.tags) {
+      this.article.tags = [];
+    }
     this.article.tags.push(this.searchTag);
     this.docService.saveDoc(this.article)
       .subscribe(() => this.searchTag = '')
