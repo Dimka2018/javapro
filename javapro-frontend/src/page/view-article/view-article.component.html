@@ -1,6 +1,10 @@
 <div class="view-article-page">
   <div class="article-header">
+    <div class="black-square" *ngIf="hasPermission('ROLE_ADMIN')">
+      <div (click)="editArticle(article.id)" class="change-button"></div>
+    </div>
     <input class="title" disabled [(ngModel)]="article.title">
+    <div></div>
   </div>
   <div class="NgxEditor__Wrapper">
     <ngx-editor

@@ -2,8 +2,9 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Editor, toDoc, Toolbar} from "ngx-editor";
 import {DocumentService} from "../../service/document.service";
 import {Article} from "../../model/article";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ArticleMapper} from "../../mapper/article.mapper";
+import {UserService} from "../../service/user.service";
 
 @Component({
   selector: 'view-article',
@@ -16,7 +17,8 @@ export class ViewArticleComponent implements OnInit, OnDestroy {
   editor!: Editor;
   html: string = '';
 
-  constructor(private docService: DocumentService, private route: ActivatedRoute, private mapper: ArticleMapper) {}
+  constructor(private docService: DocumentService, private userService: UserService,
+              private route: ActivatedRoute, private router: Router, private mapper: ArticleMapper) {}
 
   ngOnInit(): void {
     this.editor = new Editor();
@@ -30,6 +32,14 @@ export class ViewArticleComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.editor.destroy();
+  }
+
+  hasPermission(permission: string): boolean {
+    return this.userService.hasPermission(permission)
+  }
+
+  editArticle(id: string) {
+    this.router.navigate([`/edit-article/${id}`])
   }
 
 }

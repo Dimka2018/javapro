@@ -3,7 +3,7 @@
   height: 4vw;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 .title {
@@ -23,4 +23,20 @@
   height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
+}
+
+.black-square {
+  background: black;
+  border: black solid 4px;
+  border-radius: 4px;
+}
+
+.change-button {
+  background: url("../../assets/images/edit.svg") no-repeat center;
+  width: 3vw;
+  height: 3vw;
+}
+
+.change-button:hover {
+  cursor: pointer;
 }
