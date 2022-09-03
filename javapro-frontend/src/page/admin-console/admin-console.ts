@@ -10,7 +10,7 @@ import {Question} from "../../model/question";
   templateUrl: './admin-console.html',
   styleUrls: ['./admin-console.scss']
 })
-export class AdminConsole implements OnInit{
+export class AdminConsole implements OnInit {
 
   questionsOpened = false;
   questions: Question[] = [];
