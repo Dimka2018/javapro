@@ -12,6 +12,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class ErrorHandler {
 
+    @ExceptionHandler(Exception.class)
+    public void handleException(Exception exception) {
+        log.error(exception.getMessage(), exception);
+    }
+
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(UserNotFoundException.class)
     public void handleUserNotFound(UserNotFoundException exception) {
@@ -21,5 +26,6 @@ public class ErrorHandler {
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     @ExceptionHandler(PermissionDeniedException.class)
     public void handlePermissionDenied(PermissionDeniedException exception) {
+        log.info("Permission denied", exception);
     }
 }
