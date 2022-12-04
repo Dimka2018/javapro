@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {DocumentService} from "../../service/document.service";
 import {Router} from "@angular/router";
 import {UserService} from "../../service/user.service";
+import {Notify} from "notiflix/build/notiflix-notify-aio";
 
 @Component({
   selector: 'menu',
@@ -18,7 +19,8 @@ export class MenuComponent {
   createArticle() {
     this.docService.createArticle()
       .subscribe(article => this.router.navigate(['/all-articles'])
-        .then(() => this.router.navigate([`/edit-article/${article.id}`])));
+        .then(() => this.router.navigate([`/edit-article/${article.id}`])),
+        error => Notify.failure(error.message));
   }
 
   switchExpand() {

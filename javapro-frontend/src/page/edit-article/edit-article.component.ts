@@ -7,6 +7,7 @@ import {ArticleMapper} from "../../mapper/article.mapper";
 import {ImageService} from "../../service/image.service";
 import {fromEvent} from "rxjs";
 import {debounceTime, distinctUntilChanged, filter, tap} from 'rxjs/operators';
+import {Notify} from "notiflix/build/notiflix-notify-aio";
 
 @Component({
   selector: 'edit-article',
@@ -60,12 +61,12 @@ export class EditArticleComponent implements AfterViewInit, OnInit, OnDestroy {
 
   onTitleChanged() {
     this.docService.saveDoc(this.article)
-      .subscribe();
+      .subscribe(() => {}, error => Notify.failure(error.messge));
   }
 
   ngOnInit(): void {
     this.editor = new Editor();
-    this.article.id = this.route.snapshot.paramMap.get('id')!.toString()
+    this.article.id = this.route.snapshot.paramMap.get('id').toString()
     this.docService.getArticle(this.article.id)
       .subscribe(article => {
         this.article = article
