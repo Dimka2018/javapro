@@ -1,54 +1,57 @@
 package com.dimka.javapro.service;
 
-import com.dimka.javapro.model.Article;
 import com.dimka.javapro.model.Image;
-import com.dimka.javapro.repository.ImageRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jlefebure.spring.boot.minio.MinioService;
+import io.minio.messages.Item;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.annotation.Async;
+import org.apache.commons.lang3.SerializationUtils;
+import org.apache.http.entity.ContentType;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.nio.file.Path;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 @Slf4j
 @RequiredArgsConstructor
 @Service
 public class ImageService {
 
-    private final ImageRepository imageRepository;
-    private final ObjectMapper objectMapper;
+    private final MinioService imageRepository;
 
-    public Image saveImage(String url, String articleId) {
-        byte[] content = new RestTemplate().getForObject(url, byte[].class);
-        Image image = new Image()
-                .setContent(content)
-                .setArticleId(articleId);
-        return imageRepository.save(image);
-    }
-
+    @SneakyThrows
     public void save(Image image) {
-        imageRepository.save(image);
+        byte[] content = SerializationUtils.serialize(image);
+        try (InputStream stream = new ByteArrayInputStream(content)) {
+            imageRepository.upload(Path.of(image.getId()), stream, ContentType.DEFAULT_BINARY);
+        }
     }
 
-    public byte[] get(String id) {
-        return imageRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Image not found for id " + id))
-                .getContent();
+    @SneakyThrows
+    public Image get(String id) {
+        return SerializationUtils.deserialize(imageRepository.get(Path.of(id)).readAllBytes());
     }
 
-    public Stream<Image> findAll() {
-        return StreamSupport.stream(imageRepository.findAll().spliterator(), false);
+    @SneakyThrows
+    public List<Image> findAll() {
+        return imageRepository.list().stream()
+                .map(Item::objectName)
+                .map(this::get)
+                .collect(Collectors.toList());
     }
 
     @SneakyThrows
     public void delete(List<String> ids) {
-        imageRepository.deleteAllById(ids);
+        ids.forEach(this::delete);
+    }
+
+    @SneakyThrows
+    private void delete(String id) {
+        imageRepository.remove(Path.of(id));
     }
 
 }

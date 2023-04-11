@@ -23,13 +23,14 @@
 
 .search-result {
   width: 100vw;
-  height: 98vh;
+  height: calc(100vh - 6.5vw);
   background: white;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   padding-top: 2vw;
+  margin-top: 2vw;
   overflow-y: auto;
 }
 
@@ -45,7 +46,7 @@
   align-items: center;
   width: 70vw;
   height: 2vw;
-  margin-top: 2vw;
+  margin-bottom: 2vw;
 }
 
 .square-box {
@@ -63,7 +64,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 90%;
+  width: 80%;
   height: 100%;
   border: black solid 4px;
   border-radius: 4px;
@@ -97,4 +98,35 @@
 .article-link:hover {
   cursor: pointer;
 }
+
+.button-container {
+  width: 8vw;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  .black-square {
+    background: black;
+    border: black solid 4px;
+    border-radius: 4px;
+
+    .delete-button {
+      background: url("../../assets/images/delete.svg") no-repeat center;
+    }
+
+    .edit-button {
+      background: url("../../assets/images/edit.svg") no-repeat center;
+    }
+
+    .delete-button, .edit-button {
+      width: 2vw;
+      height: 2vw;
+    }
+
+    .delete-button:hover, .edit-button:hover {
+      cursor: pointer;
+    }
+  }
+}
+
 

@@ -3,13 +3,13 @@ package com.dimka.javapro.model;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 import lombok.experimental.Accessors;
-import org.springframework.data.redis.core.RedisHash;
+
+import java.io.Serializable;
 
 @JsonInclude(JsonInclude.Include.USE_DEFAULTS)
-@RedisHash("IMAGE")
 @Accessors(chain = true)
 @Data
-public class Image {
+public class Image implements Serializable {
 
     private String id;
     private String articleId;

@@ -25,6 +25,7 @@ public class ImageDeleteScheduler {
                 .map(Article::getId)
                 .collect(Collectors.toList());
         List<String> imageIds = imageService.findAll()
+                .stream()
                 .filter(image -> !ids.contains(image.getArticleId()))
                 .map(Image::getId)
                 .collect(Collectors.toList());

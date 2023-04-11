@@ -1,4 +1,9 @@
 spring:
+  minio:
+    url: http://localhost:9000
+    bucket: media
+    access-key: HTnfdNY10s1W6luh
+    secret-key: brZUtLJYrxD4Xib46J0PHZ8k8iifvzv2
   data:
     mongodb:
       database: javapro

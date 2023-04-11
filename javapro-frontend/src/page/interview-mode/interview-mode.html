@@ -8,6 +8,14 @@
       <div class="article" (mouseenter)="setArticleId(article.id || '')">
         {{article.title}}
       </div>
+      <div class="button-container">
+        <div class="black-square" *ngIf="hasPermission('ROLE_ADMIN')">
+          <div (click)="editArticle(article.id)" class="edit-button"></div>
+        </div>
+        <div class="black-square" *ngIf="hasPermission('ROLE_ADMIN')">
+          <div (click)="deleteArticle(article.id)" class="delete-button"></div>
+        </div>
+      </div>
       <context-view class="position-center"
                     [articleId]="article.id"
                     (mouseleave)="setArticleId('')"
