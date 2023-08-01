@@ -18,7 +18,7 @@ export class MenuComponent {
 
   createArticle() {
     this.docService.createArticle()
-      .subscribe(article => this.router.navigate(['/all-articles'])
+      .subscribe(article => this.router.navigate(['/articles'])
         .then(() => this.router.navigate([`/edit-article/${article.id}`])),
         error => Notify.failure(error.message));
   }

@@ -31,7 +31,7 @@ export class AskQuestionComponent {
   }
 
   openAllArticles() {
-    this.router.navigate([`/all-articles`])
+    this.router.navigate([`/articles`])
   }
 
 }

@@ -19,7 +19,7 @@ export class LoginComponent {
     this.userService.login(this.user)
       .subscribe(() => {
         this.userService.refreshAuthentication();
-        this.router.navigate([`/all-articles`])
+        this.router.navigate([`/articles`])
       })
   }
 
